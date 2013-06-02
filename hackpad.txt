@@ -1,0 +1,91 @@
+HACK FOR WESTERN MASS: Mapping Safety Net Service Needs
+ 
+Challenge
+To make the best use of its resources, Community Action uses data to ensure their services are reaching areas that have the most need. For example, do they have Parent-Child Development Centers located in areas with the highest rates of child poverty?
+ 
+Their data includes keeping internal records of their clients in Franklin, Hampshire, and Hampden counties, including addresses and the programs used. They also use county-level Census data (anything from poverty rates to commuting times) to assess local need.
+ 
+Community Action would like to improve insight into its reach by doing the following:
+ 
+
+    Using more granular level Census data to track need (e.g., use Census tracts instead of county level)
+
+    Assigning the locations of their clients to a census tract
+
+    Visually comparing the two items, most likely on a map
+
+     
+
+Constraints: Because Community Action’s client data is private, they need an easy way to upload/input the data internally and have it feed into the map. In other words, hackathon participants won’t have access to the actual addresses of people being served. However, their data expert will be on hand to advise on the best format.
+ 
+Even though the client information is secure, the mechanism for adding it to the map should follow the Hack for Western Mass open source guidelines.
+ 
+Solution
+Community Action is looking for a way to compare need and persons served. They want to answer questions like, “do we have Head Start sites in locations with high rates of child poverty?” and “what percentage of poor kids in the region are our programs reaching.?”
+They currently use tables for this kind of analysis but feel that a map would provide more powerful insight and make it easier for them to tell their story. Are there other kinds of easy-to-understand visualizations that would help?
+Ideally, the solution would:
+ 
+
+    cover Community Action’s service area of Franklin County, Hampshire County, and Western Hampden County
+
+    show census and client data not only for the current year but for previous years
+
+    export data to a spreadsheet
+
+     
+
+Depending on how it’s built, the solution might also qualify for the Census Bureau’s national American Community challenge (i.e., an opportunity to submit it to theirapplication showcase).
+ 
+Some steps: Getting lat/long and identifying census tract onto the confidential address data, then aggregate to census tract level, supress or aggregate tracts to preserve confidentiality, express as a percent of population in that census tract. Bring this data into a geographically-based visualization tool. OpenStreetMap will work for this. We are talking about using, as Andy from the OpenStreetMap group describes below, leaflet:
+Leaflet [ http://leafletjs.com/ ]  "is a modern open-source JavaScript library for mobile-friendly  interactive maps. Weighing just about 28 KB of JS code, it has all the features most developers ever need for online maps."
+ 
+Useful Leaflet plugins
+Leaftlet plugins page - http://leafletjs.com/plugins.html
+
+    Heatmaps
+
+HeatCanvas - Simple heatmp api based on HTML5 canvas https://github.com/sunng87/heatcanvas
+heatmap.js - JavaScript Library for HTML5 canvas based heatmaps. Its Leaflet layer implementation supports large datasets because it is tile based and uses a quadtree index to store the data http://www.patrick-wied.at/static/heatmapjs/example-heatmap-leaflet.html
+
+    Labels
+
+Leaflet.label - Add text labels to map markers and vector layers https://github.com/Leaflet/Leaflet.label
+Leaflet Data Visualization Framework - New markers, layers, and utility classes for easy thematic mapping and data visualization http://humangeo.github.com/leaflet-dvf/
+These would be useful for tying stories to certain locations
+Leaflet tutorials:
+Choropleth map: http://leafletjs.com/examples/choropleth.html
+Layers: http://leafletjs.com/examples/layers-control.html 
+ 
+API Key
+If you need a Census API key, sign up here: http://www.census.gov/developers/tos/key_request.html
+ 
+Other Maps/Data Displays
+Some other maps/data that may be of interest:
+ 
+Social Explorer: http://www.socialexplorer.com/pub/home/home.aspx (flash-based, shows whole country, choropleth, can use different filters to display)
+ 
+West Coast Poverty Center: http://depts.washington.edu/wcpc/maps_interactives (collects a variety of similar maps, may be useful for pinpointing details of a type of map or ideas of things to display on the map)
+ 
+Mapping America: http://projects.nytimes.com/census/2010/explorer (flash-based, a variety of different sets of data, dots and choropleth, views by census tract)
+ 
+National Center for Children in Poverty: http://www.nccp.org/tools/demographics/ (Not maps, but generates tables based on the data. Would this be an adjunct to consider _way_ down the line?) 
+ 
+County maps of Massachusetts (pictorial):
+http://quickfacts.census.gov/qfd/maps/massachusetts_map.html
+http://www.doe.mass.edu/resources/countymap.pdf
+ 
+Census tracts covering Franklin, Hampshire, and Western Hampden County:
+ 
+25011040100 25011040200 25011040300 25011040400 25011040501 25011040502 25011040600 25011040701 25011040702 25011040800 25011040900 25011041000 25011041100 25011041200 25011041300 25011041400 25011041501 25011041502 25013812201 25013812202 25013812300 25013812401 25013812403 25013812404 25013812500 25013812600 25013812701 25013812702 25013812800 25013812901 25013812902 25013812903 25013813000 25013813101 25013813102 25013813204 25013813205 25013813206 25013813207 25013813208 25013813209 25015820101 25015820102 25015820202 25015820203 25015820204 25015820300 25015820400 25015820500 25015820600 25015820700 25015820801 25015820802 25015820900 25015821000 25015821100 25015821200 25015821300 25015821400 25015821500 25015821601 25015821602 25015821700 25015821901 25015821903 25015821904 25015822000 25015822200 25015822300 25015822401 25015822402 25015822500 25015822601 25015822603 25015822605 25015822606 25015822700
+ 
+GeoJSON of Community Action Service Area: Centered on 42.369373, -72.639241
+ 
+Lissie and I stayed late yesterday talking about design and I realized the data to be presented on the map has not been fully conceptualized, especially when considering design constraints and what is most crucial to present when considering the perspective of what should be clear to the user, and what CA most would like to show. The following three data concepts 
+3 potential data concepts (all by census tract, by year (we'll develop for this year only):
+1.% persons with incomes below the poverty line served by CommunityACTION. This is expressed as percent of all persons in poverty (requires flag for income below poverty line to be created by CA in their data. Requires data to be displayed by year, because the poverty line changes, as do incomes: a new file with data on those served would feed the map for each year.) Census data needed: total number of persons below the poverty line by census tract
+2. % veterans served by CA. This is expressed as percent of all veterans in the census tract. (requires a binary flag for Veteran status in their data. Requires data to be displayed by year, as the denominator as well as potentially the numerator changes.) Census data needed: total number of veterans by census tract. 
+3.total persons served by CA as a percent of total persons in the census tract. Census data needed: total number of persons in the census tract (any problem here with records in CA being for adults only? Should this be total number of 'adults' or whatever age restrictions may be in place to be listed in their data as a recipient?)
+Experimental idea: total persons served by CA as percent of persons in poverty in the census tract(?) this would identify "gaps" (but we must not forget CA is not the only safety net service provider in the area, this may highlight places with other service provision OR unmet need.)
+issue: data is not currently unified across programs. solution: people must be deduplicated or uniquely IDed when data from multiple programs is pooled. 
+In the short term, it might be possible to create maps by each program, but perhaps we should design should be for long-term use, since the agency is working to unify their data system, and this provides more clear, readable data concepts.
+
