@@ -1,0 +1,40 @@
+.colophon {
+	border-top: 10px #ff0404 solid;
+	background-color: #4e6c9b;
+	position: relative;
+	overflow: hidden;
+	div {
+		margin: 0;
+		padding: 2em;
+	}
+	.organizations {
+		width: auto;
+		margin: 0 auto;
+		text-align: center;
+		overflow: hidden;
+		a {
+			display: inline-block;
+			margin: 0 1em;
+			text-decoration: none;
+			img {
+			    opacity:0.5;
+			    @extend .transition;
+			}
+			&:hover {
+			    img { opacity: 1; }
+			}
+		}
+	}
+	.builders {
+		clear: left;
+		width: 100%;
+		background-color: #233d68;
+	}
+	p {
+		color: #2a3663;
+		font-family: $head;
+		font-size: 1.3em;
+		font-weight: 300;
+		margin: 0.1em 0 0.2em 0;
+	}
+}

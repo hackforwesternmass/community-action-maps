@@ -1,0 +1,40 @@
+@mixin break($point) {
+  @if $point == thumb {
+    @media (max-width: 20em) { @content; }
+  }
+  @else if $point == book {
+    @media (min-width: 48em) { @content; }
+  }
+  @else if $point == laptop {
+    @media (min-width: 64em)  { @content; }
+  }
+  @else if $point == wide {
+    @media (min-width: 80em)  { @content; }
+  }
+}
+
+.example-wrap {
+  width: 100%;
+  @include break(thumb) { width: 100%; }
+}
+
+
+.transition {
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+@font-face {
+    font-family: 'BebasNeueRegular';
+    src: url('../fonts/BebasNeue-webfont.eot');
+    src: url('../fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/BebasNeue-webfont.woff') format('woff'),
+         url('../fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('../fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

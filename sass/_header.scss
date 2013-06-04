@@ -1,0 +1,30 @@
+.banner {
+	padding: 0;
+	height: 7em;
+	background-color: #4e6c9b;
+	position: relative;
+	border-bottom: 5px #ff0404 solid;
+	h1 {
+		@include rotate(-3deg);
+		position: absolute;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		line-height: 1.2em;
+		top: 0.3em;
+		left: 0.8em;
+		font-family: $head;
+		font-size: 2em;
+		display: inline-block;
+		margin: 0;
+		font-weight: 300 !important;
+		color: white;
+		span {
+			font-size: 140%;
+		}
+	}
+	.ca-logo {
+		position: absolute;
+		top: 0.8em;
+		right: 0.8em;
+	}
+}

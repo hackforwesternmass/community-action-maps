@@ -1,0 +1,57 @@
+/* * * * * * * * * * * * * * * *
+ *
+ *  Base Sytles and Variables
+ *
+ * * * * * * * * * * * * * * * */
+
+/* Sure does make layout with CSS more pleasant.
+ * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ */
+* { box-sizing: border-box; }
+
+/* Global layout
+ */
+
+header, nav, section, footer {
+	width: 97%;
+	margin: 0 auto;
+	@include break(book) { width: 90% }
+}
+
+/* Colors
+ */
+
+.picker {
+	color: #252525;
+}
+
+$blue:			#4e6c9b;
+$dark-blue:		#233d68;
+$red: 			#ff0404;
+$light-gray: 	#dedede;
+$dark-gray: 	#252525;
+
+$header-color:	$blue;
+$line-color:	$red;
+
+/* Global Type Styles
+ */
+
+$head: 'BebasNeueRegular', Impact;
+$sans: 'Open Sans', sans-serif;
+
+/* Override some HTML5 Boilerplate */
+html,
+button,
+input,
+select,
+textarea {
+    color: $dark-gray;
+}
+
+body {
+	font-family: $sans;
+	text-rendering: optimizeLegibility;
+}
+
+/* Link styles */
