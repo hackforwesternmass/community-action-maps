@@ -4,11 +4,8 @@ import xml.etree.ElementTree as ET
 import xlrd
 import sys
 
-inputxlsfile = sys.argv[1]
-outputcsvfile = sys.argv[2]
 
-# inputxlsfile='CADt2.xlsx'
-# outputcsvfile='tractdata.csv'
+
 
 
 wb=xlrd.open_workbook(inputxlsfile)
@@ -92,3 +89,16 @@ with open(outputcsvfile, 'wb') as csvfile:
 	outwriter.writerow(['Tract', 'TotalIncome', 'Count'])
 	for s in tractunique:
 		outwriter.writerow([s,incomearray[s],countarray[s]])
+
+def main():
+	pass
+
+if __name__ == '__main__':
+	if len(sys.argv) < 2:
+		#test data
+		inp = 'CADt2.xlsx'
+		out = 'tractdata.csv'
+	else:
+		inp = sys.argv[1]
+		out = sys.argv[2]
+	main(inp, out)
