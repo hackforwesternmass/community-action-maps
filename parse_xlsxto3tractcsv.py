@@ -4,39 +4,8 @@ import xml.etree.ElementTree as ET
 import xlrd
 import sys
 
-
-
-
-
-wb=xlrd.open_workbook(inputxlsfile)
-sh=wb.sheet_by_index(0)
-
-# Assumes header with column headings
-nvars=sh.ncols
-
-#in cell form
-headers=sh.row(0)
-
-col=0
-varlist=[]
-for vars in headers:
-	varlist.append(vars.value)
-	
-#pull out fields:
-#This could  be made more flexible...
-	if vars.value == 'Address':
-		addressfield=col
-	elif vars.value == 'City':
-		cityfield=col
-	elif vars.value == 'Zip':
-		zipfield=col
-	elif vars.value == 'income':
-		incomefield=col
-	col=col+1
-
 fipslist=[]
 #skip header row, go through rest of data
-
 
 #This block of code attaches FIPS to addresses 
 for rownum in range(sh.nrows)[1:sh.nrows]:
@@ -90,8 +59,33 @@ with open(outputcsvfile, 'wb') as csvfile:
 	for s in tractunique:
 		outwriter.writerow([s,incomearray[s],countarray[s]])
 
-def main():
-	pass
+def main(inp, out):
+	wb=xlrd.open_workbook(inp)
+	sh=wb.sheet_by_index(0)
+
+	# Assumes header with column headings
+	nvars=sh.ncols
+
+	#in cell form
+	headers=sh.row(0)
+
+	col=0
+	varlist=[]
+	for vars in headers:
+		varlist.append(vars.value)
+		
+	#pull out fields:
+	#This could  be made more flexible...
+		if vars.value == 'Address':
+			addressfield=col
+		elif vars.value == 'City':
+			cityfield=col
+		elif vars.value == 'Zip':
+			zipfield=col
+		elif vars.value == 'income':
+			incomefield=col
+		col=col+1
+
 
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
