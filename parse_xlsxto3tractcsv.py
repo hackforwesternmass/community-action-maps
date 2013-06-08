@@ -6,6 +6,7 @@ import urlgrabber
 import xlrd
 
 class DataMunger (object):
+	"Categorize locations and data into census tract level data for display"
 	def __init__(self, inp, out):
 		self.wb=xlrd.open_workbook(inp)
 		self.sh=self.wb.sheet_by_index(0)
@@ -86,10 +87,6 @@ class DataMunger (object):
 	def dowork(self):
 		fips = self.getfips()
 		mkdata = self.aggregate()
-
-#This block of code does aggregation
-
-
 
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
