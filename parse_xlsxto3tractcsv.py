@@ -60,15 +60,14 @@ class DataMunger (object):
 			else:
 				fipstract='99999999999'
 			self.fipslist.append(fipstract)
-		return fipslist
 	def aggregate(self):
 		countarray={}
 		incomearray={}
 
 		for rownum in range(self.sh.nrows)[1:self.sh.nrows]:
 			tidx=rownum-1
-			income=self.sh.row_values(rownum)[incomefield]
-			tract=str(fipslist[tidx])
+			income=self.sh.row_values(rownum)[self.incomefield]
+			tract=str(self.fipslist[tidx])
 			if countarray.has_key(tract):
 				countarray[tract] = countarray[tract] + 1
 				incomearray[tract] = incomearray[tract] + income
@@ -76,7 +75,7 @@ class DataMunger (object):
 				countarray[tract] = 1
 				incomearray[tract] = income
 
-		tractunique = set(fipslist)
+		tractunique = set(self.fipslist)
 		with open(self.out, 'wb') as csvfile:
 			outwriter = csv.writer(csvfile, delimiter = ',', quotechar = '|', quoting = csv.QUOTE_MINIMAL)
 			outwriter.writerow(['Tract', 'TotalIncome', 'Count'])
