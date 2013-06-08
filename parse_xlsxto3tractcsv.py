@@ -1,8 +1,10 @@
 import csv
-import urlgrabber
 import xml.etree.ElementTree as ET
-import xlrd
 import sys
+
+import urlgrabber
+import xlrd
+
 class DataMunger (object):
 	def __init__(self, inp, out):
 		self.wb=xlrd.open_workbook(inp)
