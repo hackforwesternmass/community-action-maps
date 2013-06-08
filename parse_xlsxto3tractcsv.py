@@ -2,9 +2,13 @@ import csv
 import urlgrabber
 import xml.etree.ElementTree as ET
 import xlrd
+import sys
 
-inputxlsfile='CADt2.xlsx'
-outputcsvfile='tractdata.csv'
+inputxlsfile = sys.argv[1]
+outputcsvfile = sys.argv[2]
+
+# inputxlsfile='CADt2.xlsx'
+# outputcsvfile='tractdata.csv'
 
 
 wb=xlrd.open_workbook(inputxlsfile)
