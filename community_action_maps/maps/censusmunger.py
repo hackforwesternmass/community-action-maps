@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 import sys
-import urlgrabber
+#import urlgrabber
 import xlrd
 import json
 from collections import defaultdict
