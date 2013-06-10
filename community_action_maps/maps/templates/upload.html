@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Minimal Django File Upload Example</title>   
+    </head>
+    <body>
+        <!-- Upload form. Note enctype attribute! -->
+        <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.file.label_tag }} {{ form.file.help_text }}</p>
+            <p>
+            {{ form.file.errors }}
+            {{ form.file}}
+            </p>
+            <p><input type="submit" value="Upload" /></p>
+        </form>
+    </body>
+</html>
+
