@@ -1,6 +1,7 @@
 import csv
 import xml.etree.ElementTree as ET
 import sys
+import json
 
 import urlgrabber
 import xlrd
@@ -79,11 +80,26 @@ class DataMunger (object):
 				incomearray[tract] = income
 
 		tractunique = set(self.fipslist)
+	def makecsv(self):
 		with open(self.out, 'wb') as csvfile:
 			outwriter = csv.writer(csvfile, delimiter = ',', quotechar = '|', quoting = csv.QUOTE_MINIMAL)
 			outwriter.writerow(['Tract', 'TotalIncome', 'Count'])
 			for s in tractunique:
 				outwriter.writerow([s,incomearray[s],countarray[s]])
+	
+	def makejson(self):
+		return json.dumps(self.makedict())
+
+	def makedict(self):
+		'actual magic was in fact used in the making of this'
+		return {x : {incomearray[x], countarray[x]} for x in tractunique}
+	def _loadcsv(self, incsv):
+		"DO NOT USE!"
+		with open(incsv, 'rb') as f:
+			l = [x for x in csv.reader(f)]
+			headers = l[0]
+			return {i[0]: {headers[1]:  i[1], headers[2]: i[2]}for i in l[0:]}
+
 	def dowork(self):
 		fips = self.getfips()
 		mkdata = self.aggregate()
