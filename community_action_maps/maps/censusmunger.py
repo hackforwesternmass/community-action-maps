@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 import sys
-#import urlgrabber
+import requests
 import xlrd
 import json
 from collections import defaultdict
@@ -49,15 +49,16 @@ class DataMunger (object):
             # switch type to string
             burlstr = buildurl.encode('ascii','ignore')
             print burlstr
-            outp = urlgrabber.urlread(burlstr)
+            r = requests.get(burlstr)
+            outp = r.text
 
             # If address not resolved, skip it, assign 999999 tract code:
             if outp != "2: couldn't find this address! sorry":
                 lat = outp.split(",")[0]
                 lon = outp.split(",")[1]
                 buildcensurl = 'http://data.fcc.gov/api/block/2010/find?latitude='+lat+'&longitude='+lon
-                outblock = urlgrabber.urlread(buildcensurl)
-                e = ET.fromstring(outblock)
+                outblock = requests.get(buildcensurl)
+                e = ET.fromstring(outblock.text)
                 block = e.find('{http://data.fcc.gov/api}Block')
                 fipstract = block.attrib['FIPS'][0:11]
             else:
