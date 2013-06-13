@@ -76,17 +76,8 @@ class DataMunger (object):
                 d[k]['income'] += fips[k]
 
         # Massage the data into the JSON format needed for leaflet.js
-        data = []
-        for fips in d:
-            data.append({
-                "type": "feature",
-                "properties": {
-                    "FIPS": fips,
-                    "TotalIncome": d[fips]['income'],
-                    'Count': d[fips]['count'],
-                },
-            })
-            
+        data = {fips : {"TotalIncome": d[fips]['income'], 
+            'Count': d[fips]['count']}, for fips in d}
         # Write JSON to a file
         with open(self.out, 'w') as outfile:
             json.dump(data, outfile)
