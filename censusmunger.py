@@ -98,7 +98,7 @@ class DataMunger (object):
 		with open(incsv, 'rb') as f:
 			l = [x for x in csv.reader(f)]
 			headers = l[0]
-			return {i[0]: {headers[1]:  i[1], headers[2]: i[2]}for i in l[0:]}
+			return {i[0]: {headers[1]:  i[1], headers[2]: i[2]}for i in l[1:]}
 
 	def dowork(self):
 		fips = self.getfips()
