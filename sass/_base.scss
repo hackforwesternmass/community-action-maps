@@ -7,7 +7,7 @@
 /* Sure does make layout with CSS more pleasant.
  * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
  */
-* { box-sizing: border-box; }
+* { @include box-sizing(border-box); }
 
 /* Global layout
  */
