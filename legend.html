@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Legend, to be integrated into index.html when the time is right</title>
+	<style>
+		#legend {
+			border: 1px solid blue;
+			border: 10px;
+			width: 220px;
+		}
+		.legend_ranges {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.legend_ranges > li {
+			margin: 0;
+			padding: 0;
+			display: inline-block;
+			width: 100px;
+			vertical-align: top;
+		}
+		.legend_ranges > li:before {
+			/* just for fun/testing */
+			content: '';
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			background: #caa;
+			border: 1x solid black;
+
+		}
+	</style>
+</head>
+<body>
+	<div id="legend">
+		<h2>HEAD START 2012</h2>
+		<div class="legend_section">
+			<h3>Head Start Recipients</h3>
+			<ul class="legend_ranges">
+				<li id="legend_0_0"> 0%</li>
+				<li id="legend_0_1"> 1-5%</li>
+				<li id="legend_0_2"> 5-10%</li>
+				<li id="legend_0_3"> Over 10%</li>
+			</ul>
+		</div>
+		<div class="legend_section">
+			<h3>Local Poverty Overlay</h3>
+			<ul class="legend_ranges">
+				<li id="legend_1_0"> 0-5%</li>
+				<li id="legend_1_1"> 5-15%</li>
+				<li id="legend_1_2"> 15-25%</li>
+				<li id="legend_1_3"> 25% and above</li>
+			</ul>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
