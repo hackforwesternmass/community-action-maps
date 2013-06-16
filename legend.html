@@ -5,7 +5,7 @@
 	<style>
 		#legend {
 			border: 1px solid blue;
-			border: 10px;
+			padding: 10px;
 			width: 220px;
 		}
 		.legend_ranges {
@@ -13,21 +13,27 @@
 			padding: 0;
 			margin: 0;
 		}
+		.legend_ranges:after {
+			content: '';
+			display: block;
+			height: 0;
+			clear: both;
+		}
 		.legend_ranges > li {
 			margin: 0;
 			padding: 0;
-			display: inline-block;
-			width: 100px;
+			float: left;
+			width: 110px;
 			vertical-align: top;
 		}
 		.legend_ranges > li:before {
 			/* just for fun/testing */
 			content: '';
 			display: inline-block;
-			width: 10px;
-			height: 10px;
+			width: 12px;
+			height: 12px;
 			background: #caa;
-			border: 1x solid black;
+			border: 1px solid black;
 
 		}
 	</style>
