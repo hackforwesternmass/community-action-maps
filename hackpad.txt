@@ -1,5 +1,38 @@
 HACK FOR WESTERN MASS: Mapping Safety Net Service Needs
  
+UPDATE as of our meeting at Owl&Raven on Saturday, June 8th
+Many of us will meet again at Owl&Raven on Saturday, June 15th from 2-5! Yay!
+ 
+ Here are some of the tasks we talked about and worked on at the June 8th meeting:
+ 
+2 Crucial tasks with no one working on them currently, both javascript, A and B (not ordered):
+A) Figure out how to make leaflet make the colors and hatching Lissie specified.-- need someone to implement Lissie's suggested colors and hatching in leaflet-- Could this be Andy? Jack? Jason?
+An interesting thing I discovered that may or may not quicken implementation of any desired design: http://mapbox.github.io/tilemill/ - It's a desktop app that uses something called MSS that's similar to CSS to style maps. It can be fed several different kinds of shape and point data, and provides lots of cool functionality and control. Works with leaflet. In use here: http://www.npr.org/censusmap/
+Also, if there's still any struggling going on with deciding on cartographic color schemes, here's a tool I ran across that appears to be for EXACTLY THAT PURPOSE. What are the odds?: http://colorbrewer2.org/
+B) write the JS behind the website UI. What we have is Matt's basic html and css setup (on this https://github.com/hackforwesternmass/community-action-maps GitHub Repo) and it needs javascript to drive the  buttons, connect to the map stuff via leaflet, etc. (Matthew, needs a Javascript person to do this-- Jack can you do it? Or Andy, can you? Matt might try to teach himself javascript if no one is avail.)
+Note: The static site can be viewed at http://hackforwesternmass.github.io/community-action-maps And to be clear: I'll be working on polishing my js skills regardless, but one hopes that they get an adequate shine in time to be useful to this project!
+ C)--anything else belong here? 
+ 
+ All To Dos:
+ 
+-submitting the project http://hackforchange.org/submit ASAP -- can submit un-finished and update it multiple times, projects accepted and selected on a rolling basis, so do it now?
+-Decide data cuts (based on the census data cuts (Carrie)) and which colors and hatching represent that (designer decision-- (Lissie)). 
+-Figure out how to make leaflet make those paticular colors and hatching.-- need someone to implement Lissie's suggested colors and hatching in leaflet, it needs to loop over the aggregated data originally from community action (colors) and separately on another layer loop over the census data (hatching). (then Lissie can see if it looks like it works OK from a designer's view and tweak it if it's too illegible, it needs help now, so she can see it). Jason tells me some of this is complete (a script is written for interpolation between two colors). What I think is left to do with it: figuring out how to do hatching for the census data set, scripting the looping (?), uniting the script with the geographies, having it do it for the data sets we have.
+-Descide hosting and platform (Matthew and Carrie started thinking on this but did not resolve it fully). For right now we are serving the webpage straight from GitHub [ Could someone please add the link? ]. (http://hackforwesternmass.github.io/community-action-maps). Andrew started working in Django, created an admin interface for data entry, and would like to serve from Heroku. Andrew was planning to commit something that does this to GitHub early this week.
+-Draw Census data via API (Carrie and Caleb, see far below) Moderate success, now we have poverty levels by tract for all three counties. 
+-Choose which Census data to use (Carrie and Claire). Income for sure, maybe vet status later. They have 100% FPL but do not do a cut at 125% FPL. Likely we will use number below poverty line per census tract.We could calculate the % using a call for the total in the universe and a call for the level. Right now we are just calling the level (at or below 100% of the Federal Poverty Line by census tract, per each of the 3 counties: need to exclude by tract in Hampden County and is currently acheived in three calls instead of one).
+-JS behind the website. This is a key need with no one working on it right now. What we have is  Matt's basic html and css setup and it needs javascript to drive the buttons, connect to the map stuff via leaflet, etc. (Matt, and needs a Javascript person to do this)
+-Get transport data onto base layer (Jason, Alex). Jason and Alex made good headway on this, it will add to the finished prototype some nice aspects.
+-Website design for displaying the map with 2 layers: overlaying an anonymized-client-data-layer and a census-data-layer on the map (Lissie). More to do, with help from data people (potentially Carrie, Claire, Caleb, and/or Matt/UI) to help determine what to turn off/on contextually based on what makes sense in the data
+-Add Community Action service points by address (Andy, & Claire provided the address data)
+-Client data input tool for anonymizing the data by aggregating it into tracts. There are two ways to do this: put all the code on the website, including the tool that takes the client data and anonymizes it by aggregating it into census tracts (already scripted in Python by Caleb, with improvements/tweaks by Jack)(Andrew developed something this does this on the server side, an admin interface that will allow them to upload data in Django)
+Conceptual data refinements:
+-Lissie is trying to make the 2-layer map approach work visually, so the idea is: 1 layer in colors by census tract for the aggregated Community Action data, and 1 layer in hatching for the census data that the user compares by seeing them overlaid and uses their mind to 'see'.
+- We will focus on representing income by census tract on the map to narrow what we are working on (conceptualized as number below the poverty line per census tract. We could do percent if we wanted to take some extra steps). If we have time to add more things, I think the next data concept we could add would be veteran status.
+ 
+ 
+ 
+ 
 Challenge
 To make the best use of its resources, Community Action uses data to ensure their services are reaching areas that have the most need. For example, do they have Parent-Child Development Centers located in areas with the highest rates of child poverty?
  
@@ -36,8 +69,22 @@ Ideally, the solution would:
 
 Depending on how it’s built, the solution might also qualify for the Census Bureau’s national American Community challenge (i.e., an opportunity to submit it to theirapplication showcase).
  
-Some steps: Getting lat/long and identifying census tract onto the confidential address data, then aggregate to census tract level, supress or aggregate tracts to preserve confidentiality, express as a percent of population in that census tract. Bring this data into a geographically-based visualization tool. OpenStreetMap will work for this. We are talking about using, as Andy from the OpenStreetMap group describes below, leaflet:
-Leaflet [ http://leafletjs.com/ ]  "is a modern open-source JavaScript library for mobile-friendly  interactive maps. Weighing just about 28 KB of JS code, it has all the features most developers ever need for online maps."
+Some steps:
+
+    Geocode confidential address data to produce lat/long [AA: check privacy policy of geocoder – if none, then data may no longer be confidential. ] Here's a site offering free geocodes of simple tables.
+
+    Identify census tract containing address lat/long;
+
+    Aggregate client characteristics to census tract level, supress or aggregate tracts to preserve confidentiality [AA: unlikely once at tract level, Census Bureau gives sensitive information down to block group level — maybe also a possibility here instead of using tracts]  {Code that is an example for these first three steps is on github}
+
+    Client characteristics can be expressed as an average or total over the census tract, depending on the type of data. Probably we will overlay the aggregated client data in tracts under a census data layer to show both at once. Possibly, to get into one image, it could be expressed as total number of clients or as a percent of population in that census tract- but a separate census data overlay might be a better way to go conceptually. (Update: I think we are going forward with the two-layer method). Fake client data is on github here and Census data on poverty levels by tracts is currently in three pieces for 3 counties: Hampshire numerator, Franklin numerator, and Hampden numerator (which we only want half of the tracts in) divided respectively by  Hampshire  denominator, Franklin denominator, and Hampden denominator. Table S1701 would have done this percent calculation for us, but we can't get to it. 
+
+    Bring this data into a geographically-based visualization tool. OpenStreetMap will work for this; example: http://www3.amherst.edu/~aanderson/hack/communityaction.html This map uses Leaflet [ http://leafletjs.com/ ], "a modern open-source JavaScript library for mobile-friendly interactive maps. Weighing just about 28 KB of JS code, it has all the features most developers ever need for online maps." [AA: I'm already starting to doubt this :-]
+
+    Website wireframe/design (concurrent)
+
+    Website actualization (concurrent)
+
  
 Useful Leaflet plugins
 Leaftlet plugins page - http://leafletjs.com/plugins.html
@@ -70,7 +117,7 @@ Mapping America: http://projects.nytimes.com/census/2010/explorer (flash-based, 
  
 National Center for Children in Poverty: http://www.nccp.org/tools/demographics/ (Not maps, but generates tables based on the data. Would this be an adjunct to consider _way_ down the line?) 
  
-County maps of Massachusetts (pictorial):
+County maps of Massachusetts (pictorial): 
 http://quickfacts.census.gov/qfd/maps/massachusetts_map.html
 http://www.doe.mass.edu/resources/countymap.pdf
  
@@ -80,12 +127,36 @@ Census tracts covering Franklin, Hampshire, and Western Hampden County:
  
 GeoJSON of Community Action Service Area: Centered on 42.369373, -72.639241
  
-Lissie and I stayed late yesterday talking about design and I realized the data to be presented on the map has not been fully conceptualized, especially when considering design constraints and what is most crucial to present when considering the perspective of what should be clear to the user, and what CA most would like to show. The following three data concepts 
-3 potential data concepts (all by census tract, by year (we'll develop for this year only):
-1.% persons with incomes below the poverty line served by CommunityACTION. This is expressed as percent of all persons in poverty (requires flag for income below poverty line to be created by CA in their data. Requires data to be displayed by year, because the poverty line changes, as do incomes: a new file with data on those served would feed the map for each year.) Census data needed: total number of persons below the poverty line by census tract
-2. % veterans served by CA. This is expressed as percent of all veterans in the census tract. (requires a binary flag for Veteran status in their data. Requires data to be displayed by year, as the denominator as well as potentially the numerator changes.) Census data needed: total number of veterans by census tract. 
-3.total persons served by CA as a percent of total persons in the census tract. Census data needed: total number of persons in the census tract (any problem here with records in CA being for adults only? Should this be total number of 'adults' or whatever age restrictions may be in place to be listed in their data as a recipient?)
-Experimental idea: total persons served by CA as percent of persons in poverty in the census tract(?) this would identify "gaps" (but we must not forget CA is not the only safety net service provider in the area, this may highlight places with other service provision OR unmet need.)
-issue: data is not currently unified across programs. solution: people must be deduplicated or uniquely IDed when data from multiple programs is pooled. 
+Lissie and I stayed late on Saturday of the hackathon talking about design and I realized the data to be presented on the map has not been fully conceptualized, especially when considering design constraints and what is most crucial to present when considering the perspective of what should be clear to the user, and what CA most would like to show. There is a challenge in doing a separate overly of the CA data and then the census data for the same tract transparently over that in is own layer, to compare. Example: By census tract, percent in poverty in the last 12 months, compared to aggregate number of persons below the poverty line served by Community Action in the census tract (data from Community action).
+issue: data is not currently unified across programs in the Community Action data. solution: people must be deduplicated or uniquely IDed when data from multiple programs is pooled. 
 In the short term, it might be possible to create maps by each program, but perhaps we should design should be for long-term use, since the agency is working to unify their data system, and this provides more clear, readable data concepts.
+Census API provides 
+URL 
+Census API example:  Note that this example uses Caleb's key
+http://api.census.gov/data/2010/acs5?key=d5d4b40c4adddb44bdc56cdf1d75df32c83eab14&get=B17001_001E&for=tract:*&in=state:02+county:170
+The variable list: (XML): http://www.census.gov/developers/data/acs_5yr_2011_var.xml
+ACS5/2010
+The variable list: (XML):  http://www.census.gov/developers/data/sf1.xml
+Summary Table/2010
+Neither one of these things has variables defined in such a way that we get out what we want....
+The following links ARE WORKING! They return levels [AA: do you mean raw numbers? If so, I would not use them without scaling them – by the population for which the poverty status is known (not total population).][CB: ok, we can do that. I'll generate the links for totals that will become the denominator of the fraction that is the percentage, it just doubles the steps and requires a calculation on our end because S1701, which provide poverty %s, is not available through the API], not percentages. See notes below, we could hack something together to get percentages if those are preferable. Census tract population sizes do vary around 4,000, but not a huge amount, so levels might be OK to compare, especially since the comparator layer of Community Action data is also levels and is based on identical geography. [Eh, I checked this claim, and tract pops are +/- 1k so Andy I think you are right]
+The following data is from the 2011 ACS 5-year estimates, table B17001, "POVERTY STATUS IN THE PAST 12 MONTHS BY SEX BY AGE". Field 002E is "Estimate; Income in the past 12 months below poverty level", while field 001E is "Estimate; Total". Data links below are in the JSON-compatible format
+
+    ["B17001_001E","B17001_002E","state","county","tract"]
+
+which can be compiled into a dictionary object.  To get percentage for each tract, divide by the total people in the tract (if greater than 0), i.e.:
+
+    poverty["state"+"county"+"tract"] = 
+
+    B17001_001E > 0 ? B17001_002E / B17001_001E : 0
+
+All census tracts in Franklin County:
+<api.census.gov/data/2011/acs5?key=45eb040aa8066098e3844a5e2fa9bf100de52774&get=B17001_001E,B17001_002E&for=tract:*&in=state:25+county:011> link (uses Carrie's key)
+All census tracts in Hampshire County:
+<api.census.gov/data/2011/acs5?key=45eb040aa8066098e3844a5e2fa9bf100de52774&get=B17001_001E,B17001_002E&for=tract:*&in=state:25+county:015> link uses Carrie's key)
+All census tracts in Hampden County:
+<api.census.gov/data/2011/acs5?key=45eb040aa8066098e3844a5e2fa9bf100de52774&get=B17001_001E,B17001_002E&for=tract:*&in=state:25+county:013> link (uses Carrie's key)
+We have a problem still to solve: we need to NOT represent half of the tracts in Hampden county (=013). We may have to write a script at our end that loops over the tract numbers we wants and then only represents THOSE out of the data drawn down via the Census API. Still searching syntax to see if I can get all three counties to return at once. If I can do that I may also be able to write a really long URL that specifies the exact tracts we want from Hampden County only...
+Previously, I did not get table S1701 to work properly. I believe it is because S1701 is a special tabulation, so it's not available in the way we want. (I am looking into using table B17001 instead, see above). We will need to use (B17001_002E) for the level of those below the poverty line. If we want a percent we will have to write a calculation that takes, for each tract, the level of the total (B17001_001E) divided by the level of those below poverty (variable first named).
+American Community Survey documentation (pretty light): http://www2.census.gov/acs2011_5yr/summaryfile/ACS_2007_2011_SF_Tech_Doc.pdf
 
