@@ -1,5 +1,5 @@
-$(document).ready(function(){
-	$('a.programs-tab').delegate('click',function() {
+$(function(){
+	$('a.programs-tab').click(function() {
 		$('#programs').show();
 	});
 });
