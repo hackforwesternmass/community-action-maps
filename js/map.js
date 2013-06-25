@@ -19,6 +19,7 @@ function scaleData(data, dataMin, dataMax) { return dataMax == dataMin ? dataMax
 function tractColorFunction(feature)	// Assumes a census tract feature
 {
 	var fillColor = value_to_color(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax), poverty_high_color, poverty_low_color);
+	fillColor = 'url(#hatches' + Math.floor(Math.random() * 4) + ')';
 	return { color: fillColor, opacity: 0.8, fillColor: fillColor, weight: 1, fillOpacity: 0.8 };
 }
 // Data to put on map initially; first -> last : front to back

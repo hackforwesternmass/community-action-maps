@@ -4062,23 +4062,24 @@ L.Path = L.Path.extend({
 		var el = document.createElementNS(L.Path.SVG_NS, name);
 		if (name == 'svg') {
 			var defs = document.createElementNS(L.Path.SVG_NS, 'defs');
-			var sizes = [0.5, 1, 2, 4];
+			var sizes = [0.5, 1.2, 2, 3.2];
 			var i;
 			var pattern, g, path;
+			el.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
 			for (i in sizes) {
 				// make one of these: <pattern id="hashes#{i}" patternUnits="userSpaceOnUse" width="10" height="10"><g style="fill:none; stroke:black; stroke-width:#{sizes[i]}"><path d="M-2,7 l9,-9"/><path d="M3,12 l9,-9"/></g></pattern>
 				pattern = document.createElementNS(L.Path.SVG_NS, 'pattern');
-				pattern.patternUnits = 'userSpaceOnUse';
-				pattern.width = '10';
-				pattern.height = '10';
-				pattern.id = 'hashes' + i; // #hashes0, #hashes1, #hashes2, #hashes3
+				pattern.setAttribute('patternUnits', 'userSpaceOnUse');
+				pattern.setAttribute('width', '10');
+				pattern.setAttribute('height', '10');
+				pattern.setAttribute('id', 'hatches' + i); // #hatches0, #hatches1, #hatches2, #hatches3
 				g = document.createElementNS(L.Path.SVG_NS, 'g');
-				g.style = 'fill:none, stroke:black, stroke-width:' + sizes[i];
+				g.setAttribute('style', 'fill:none; stroke:black; stroke-width:' + sizes[i]);
 				path = document.createElementNS(L.Path.SVG_NS, 'path');
-				path.d = 'M-2,7 l9,-9';
+				path.setAttribute('d', 'M-2,7 l9,-9');
 				g.appendChild(path);
 				path = document.createElementNS(L.Path.SVG_NS, 'path');
-				path.d = 'M3,12 l9,-9';
+				path.setAttribute('d', 'M3,12 l9,-9');
 				g.appendChild(path);
 				pattern.appendChild(g);
 				defs.appendChild(pattern);
