@@ -67,20 +67,24 @@
 		<p id="censusInfo" style="display: none"></p>
 		<div id="legend" class="legend">
 			<div class="key">
-				<h1>Head Start 2012</h1>
-				<div class="head-start">
-				<!-- These need to be bind-able to events in the JS side, so class/ids need to be made or the JS should gen this. -->
-					<p>Head Start Recipients</p>
-					<a href="">over 10%</a>
-					<a href="">5-10%</a>
-					<a href="">1-5%</a>
-					<a href="">0</a>
+				<h2>HEAD START 2012</h2>
+				<div class="legend_section">
+					<h3>Head Start Recipients</h3>
+					<ul class="legend_ranges clearfix">
+						<li id="legend_0_0"><span class="swatch"></span> 0%</li>
+						<li id="legend_0_1"><span class="swatch"></span> 1-5%</li>
+						<li id="legend_0_2"><span class="swatch"></span> 5-10%</li>
+						<li id="legend_0_3"><span class="swatch"></span> Over 10%</li>
+					</ul>
 				</div>
-				<div class="poverty">
-					<p>Local Poverty Overlay</p>
-					<a href="">0-33%</a>
-					<a href="">33-66%</a>
-					<a href="">66-100%</a>
+				<div class="legend_section clearfix">
+					<h3>Local Poverty Overlay</h3>
+					<ul class="legend_ranges">
+						<li id="legend_1_0"><span class="swatch"></span> 0-5%</li>
+						<li id="legend_1_1"><span class="swatch"></span> 5-15%</li>
+						<li id="legend_1_2"><span class="swatch"></span> 15-25%</li>
+						<li id="legend_1_3"><span class="swatch"></span> 25% and above</li>
+					</ul>
 				</div>
 			</div>
 			<div class="background"></div>
