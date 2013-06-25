@@ -14,22 +14,12 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 	<link rel="stylesheet" href="css/main.css">
-
 	<link rel="stylesheet" href="leaflet-0.5.1/leaflet.css" />
 	<!--[if lte IE 8]>
 	<link rel="stylesheet" href="leaflet-0.5.1/leaflet.ie.css" />
 	<![endif]-->
 
-	<script src="leaflet-0.5.1/leaflet.js"></script>
-	<script src="js/vendor/jquery-1.10.1.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/map.js"></script>
-
-	<script type="text/javascript" charset="utf-8" src="./js/CommunityActionServiceArea.json"></script>
-
-	<!--<script src="js/vendor/modernizr-2.6.2.min.js"></script>-->
-
-	<script src="js/interpolate.js"></script>
+	<!-- Do we need this? it was giving a 404 <script src="js/vendor/modernizr-2.6.2.min.js"></script>-->
 
 	<!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
@@ -74,6 +64,7 @@
 		<div class="map-wrap">
 		<div id="map" class="map"></div>
 		</div>
+		<p id="censusInfo" style="display: none"></p>
 		<div id="legend" class="legend">
 			<div class="key">
 				<h1>Head Start 2012</h1>
@@ -112,14 +103,18 @@
 	</footer>
 
 
+	<script src="leaflet-0.5.1/leaflet.js"></script>
+	<script src="js/vendor/jquery-1.10.1.min.js"></script>
+	<script src="js/interpolate.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/map.js"></script>
 
-   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-   <!--<script>
-       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-       g.src='//www.google-analytics.com/ga.js';
-       s.parentNode.insertBefore(g,s)}(document,'script'));
-   </script>-->
-
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<!--<script>
+		var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src='//www.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>-->
 </body>
 </html>
