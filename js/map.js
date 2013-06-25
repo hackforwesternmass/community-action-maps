@@ -18,9 +18,9 @@ var layerControl = new L.Control.Layers();
 function scaleData(data, dataMin, dataMax) { return dataMax == dataMin ? 0.5 : (data - dataMin)/(dataMax - dataMin) };	// scales data between 0 and 1
 function tractColorFunction(feature)	// Assumes a census tract feature
 {
-	var fillColor = value_to_color(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax), poverty_high_color, poverty_low_color);
-	fillColor = 'url(#hatches' + Math.floor(Math.random() * 4) + ')';
-	return { color: fillColor, opacity: 0.8, fillColor: fillColor, weight: 1, fillOpacity: 0.8 };
+	//var fillColor = value_to_color(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax), poverty_high_color, poverty_low_color);
+	var fillColor = 'url(#hatches' + Math.floor(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax) * 4) + ')';
+	return { color: '#000000', opacity: 1, fillColor: fillColor, weight: 1, fillOpacity: 1 };
 }
 // Data to put on map initially; first -> last : front to back
 var geoJSONStack = [
