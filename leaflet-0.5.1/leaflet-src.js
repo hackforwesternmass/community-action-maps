@@ -4059,7 +4059,33 @@ L.Path = L.Path.extend({
 	},
 
 	_createElement: function (name) {
-		return document.createElementNS(L.Path.SVG_NS, name);
+		var el = document.createElementNS(L.Path.SVG_NS, name);
+		if (name == 'svg') {
+			var defs = document.createElementNS(L.Path.SVG_NS, 'defs');
+			var sizes = [0.5, 1, 2, 4];
+			var i;
+			var pattern, g, path;
+			for (i in sizes) {
+				// make one of these: <pattern id="hashes#{i}" patternUnits="userSpaceOnUse" width="10" height="10"><g style="fill:none; stroke:black; stroke-width:#{sizes[i]}"><path d="M-2,7 l9,-9"/><path d="M3,12 l9,-9"/></g></pattern>
+				pattern = document.createElementNS(L.Path.SVG_NS, 'pattern');
+				pattern.patternUnits = 'userSpaceOnUse';
+				pattern.width = '10';
+				pattern.height = '10';
+				pattern.id = 'hashes' + i; // #hashes0, #hashes1, #hashes2, #hashes3
+				g = document.createElementNS(L.Path.SVG_NS, 'g');
+				g.style = 'fill:none, stroke:black, stroke-width:' + sizes[i];
+				path = document.createElementNS(L.Path.SVG_NS, 'path');
+				path.d = 'M-2,7 l9,-9';
+				g.appendChild(path);
+				path = document.createElementNS(L.Path.SVG_NS, 'path');
+				path.d = 'M3,12 l9,-9';
+				g.appendChild(path);
+				pattern.appendChild(g);
+				defs.appendChild(pattern);
+			}
+			el.appendChild(defs);
+		}
+		return el;
 	},
 
 	_initElements: function () {
