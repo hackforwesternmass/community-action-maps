@@ -15,7 +15,7 @@ var fuelGaugeIcon = L.icon({
 var map;
 var layerStack = [];	// holds initial collection of layers
 var layerControl = new L.Control.Layers();
-function scaleData(data, dataMin, dataMax) { return dataMax == dataMin ? dataMax : (data - dataMin)/(dataMax - dataMin) };	// scales data between 0 and 1
+function scaleData(data, dataMin, dataMax) { return dataMax == dataMin ? 0.5 : (data - dataMin)/(dataMax - dataMin) };	// scales data between 0 and 1
 function tractColorFunction(feature)	// Assumes a census tract feature
 {
 	var fillColor = value_to_color(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax), poverty_high_color, poverty_low_color);
