@@ -4062,7 +4062,7 @@ L.Path = L.Path.extend({
 		var el = document.createElementNS(L.Path.SVG_NS, name);
 		if (name == 'svg') {
 			var defs = document.createElementNS(L.Path.SVG_NS, 'defs');
-			var sizes = [0.5, 1.2, 2, 3.2];
+			var sizes = [0.2, 1.0, 2.5, 4];
 			var i;
 			var pattern, g, path;
 			el.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
