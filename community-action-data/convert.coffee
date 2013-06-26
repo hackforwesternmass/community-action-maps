@@ -21,4 +21,11 @@ fs.readFile 'in.tsv', 'utf8', (err, data) ->
 			tracts[row.tract] += 1
 		else
 			tracts[row.tract] = 1
+	min = 100
+	max = 0
+	for k, v of tracts
+		min = v if v < min
+		max = v if v > max
+	tracts.min = min
+	tracts.max = max
 	console.log JSON.stringify tracts

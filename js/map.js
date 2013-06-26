@@ -23,8 +23,12 @@ function poverty_hashes(feature)	// Assumes a census tract feature
 }
 function ca_colors(feature)	// Assumes a census tract feature
 {
-	var fillColor = value_to_color(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax), poverty_high_color, poverty_low_color);
-	return { color: fillColor, opacity: 1, fillColor: fillColor, weight: 1, fillOpacity: 1 };
+	var recipients = ca_data[feature.properties.TRACTCE10];
+	if (!recipients) {
+		recipients = 0;
+	}
+	var fillColor = value_to_color(scaleData(recipients, 0, ca_data.max), poverty_high_color, poverty_low_color);
+	return { color: fillColor, opacity: 0.7, fillColor: fillColor, weight: 1, fillOpacity: 0.7 };
 }
 // Data to put on map initially; first -> last : front to back
 var geoJSONStack = [
@@ -119,6 +123,14 @@ var povertyFields = 'B17001_001E,B17001_002E';	// comma-separated list of field 
 var poverty = { };
 var povertyMin = 1;
 var povertyMax = 0;
+var ca_data = { };
+
+function getData() {
+	$.getJSON('community-action-data/recipients_per_tract.json', function(data) {
+		ca_data = data;
+		getCensus();
+	});
+}
 
 // The census data is being used to "paint" the tract data, hence it’s loaded first, and when complete calls the map stack
 function getCensus(censusData)
@@ -167,7 +179,7 @@ L.tileLayer(
 		styleId: 1 //1
 	}
 ).addTo(map);
-getCensus();
+getData();
 //L.marker(serviceAreaCenter, { title: 'Community ACTION Service Area', icon: fuelGaugeIcon } ).addTo(map)
 //map.on( "click", onClick() );
 L.control.scale().addTo(map);
