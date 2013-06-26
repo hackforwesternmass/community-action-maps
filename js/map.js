@@ -16,11 +16,15 @@ var map;
 var layerStack = [];	// holds initial collection of layers
 var layerControl = new L.Control.Layers();
 function scaleData(data, dataMin, dataMax) { return dataMax == dataMin ? 0.5 : (data - dataMin)/(dataMax - dataMin) };	// scales data between 0 and 1
-function tractColorFunction(feature)	// Assumes a census tract feature
+function poverty_hashes(feature)	// Assumes a census tract feature
 {
-	//var fillColor = value_to_color(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax), poverty_high_color, poverty_low_color);
 	var fillColor = 'url(#hatches' + Math.floor(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax) * 4) + ')';
 	return { color: '#000000', opacity: 1, fillColor: fillColor, weight: 1, fillOpacity: 1 };
+}
+function ca_colors(feature)	// Assumes a census tract feature
+{
+	var fillColor = value_to_color(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax), poverty_high_color, poverty_low_color);
+	return { color: fillColor, opacity: 1, fillColor: fillColor, weight: 1, fillOpacity: 1 };
 }
 // Data to put on map initially; first -> last : front to back
 var geoJSONStack = [
@@ -62,7 +66,7 @@ var geoJSONStack = [
 		{
 			layerURL: 'geography/CommunityActionTracts.json',
 			properties: { 
-							style: tractColorFunction, 
+							style: poverty_hashes,
 							onEachFeature: function (feature, layer) { 
 								layer.bindPopup('Census Tract: ' + feature.properties.GEOID10 + 
 									'<br />Poverty Rate: ' + Math.round(poverty[feature.properties.GEOID10] * 100) + '%') 
@@ -72,6 +76,21 @@ var geoJSONStack = [
 				'<span style="color: ' + value_to_color(0, poverty_high_color, poverty_low_color) + '">&#x2588;</span>' + 
 				'<span style="color: ' + value_to_color(0.33, poverty_high_color, poverty_low_color) + '">&#x2588;</span>' + 
 				'<span style="color: ' + value_to_color(0.67, poverty_high_color, poverty_low_color) + '">&#x2588;</span>' + 
+				'<span style="color: ' + value_to_color(1.00, poverty_high_color, poverty_low_color) + '">&#x2588;</span>'
+		},
+		{
+			layerURL: 'geography/CommunityActionTracts.json',
+			properties: {
+							style: ca_colors,
+							onEachFeature: function (feature, layer) {
+								layer.bindPopup('Census Tract: ' + feature.properties.GEOID10 +
+									'<br />Poverty Rate: ' + Math.round(poverty[feature.properties.GEOID10] * 100) + '%')
+								}
+						},
+			controlName: '<span style="color: ' + value_to_color(0.5, poverty_high_color, poverty_low_color) + '">Community Action Data </span>' +
+				'<span style="color: ' + value_to_color(0, poverty_high_color, poverty_low_color) + '">&#x2588;</span>' +
+				'<span style="color: ' + value_to_color(0.33, poverty_high_color, poverty_low_color) + '">&#x2588;</span>' +
+				'<span style="color: ' + value_to_color(0.67, poverty_high_color, poverty_low_color) + '">&#x2588;</span>' +
 				'<span style="color: ' + value_to_color(1.00, poverty_high_color, poverty_low_color) + '">&#x2588;</span>'
 		}
 	]
