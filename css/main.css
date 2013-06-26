@@ -1061,3 +1061,16 @@ body {
 
 /* FIXME put different crossatch thicknesses here when we have them */
 #legend_1_0 .swatch, #legend_1_1 .swatch, #legend_1_2 .swatch, #legend_1_3 .swatch { background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAARklEQVQY02NggIAYIP4DxP+RMIgfzYAEMoH4H5qiX0AczIAG/hChCGQjfuuQbMRrErKzcJqE7kGCJsEVEqPoFwMB60gPTwAt5TjXw36SiQAAAABJRU5ErkJggg==) repeat; }
+
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 300;
+	src: local('Open Sans Light'), local('OpenSans-Light'), url(../fonts/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Open Sans Bold'), local('OpenSans-Bold'), url(../fonts/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
