@@ -126,6 +126,8 @@ function getCensus(censusData)
 		var censusGeoType = censusGeoTypeStack.pop();
 		var censusURL = 'http://api.census.gov/data/' + censusYear + '/' + censusDataset + '?key=' + censusKey + 
 			'&get=' + povertyFields + '&for=tract:' + censusGeoType + '&in=state:' + censusState + '+county:' + censusCounty;
+		// use local cache (comment out next line to use live data again)
+		censusURL = 'census-cache/' + censusYear + '-' + censusCounty + '.json'
 		$.getJSON(censusURL, getCensus);
 	}
 	else
