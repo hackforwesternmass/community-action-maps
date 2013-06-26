@@ -169,7 +169,7 @@ function getCensus(censusData)
 
 
 //window.alert('stuff'); //serviceArea['type']);
-map = L.map('map').setView(serviceAreaCenter, 9);
+map = L.map('map').setView(serviceAreaCenter, 10);
 L.tileLayer(
 	'http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', 
 	{
