@@ -1049,8 +1049,8 @@ body {
 
 .legend_ranges .swatch {
 	display: inline-block;
-	width: 12px;
-	height: 12px;
+	width: 13px;
+	height: 13px;
 	background: #caa;
 	border: 1px solid black;
 }
@@ -1060,7 +1060,10 @@ body {
 #legend_0_3 .swatch { background-color: #f6d86c; }
 
 /* FIXME put different crossatch thicknesses here when we have them */
-#legend_1_0 .swatch, #legend_1_1 .swatch, #legend_1_2 .swatch, #legend_1_3 .swatch { background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAARklEQVQY02NggIAYIP4DxP+RMIgfzYAEMoH4H5qiX0AczIAG/hChCGQjfuuQbMRrErKzcJqE7kGCJsEVEqPoFwMB60gPTwAt5TjXw36SiQAAAABJRU5ErkJggg==) repeat; }
+#legend_1_0 .swatch { background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MC41Ij48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }
+#legend_1_1 .swatch { background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MS4yIj48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }
+#legend_1_2 .swatch { background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MiI+PHBhdGggZD0iTS0yLDcgbDksLTkiPjwvcGF0aD48cGF0aCBkPSJNLTIsMTcgbDE5LC0xOSI+PC9wYXRoPjxwYXRoIGQ9Ik04LDE3IGw5LC05Ij48L3BhdGg+PC9nPjwvc3ZnPg0=) repeat; }
+#legend_1_3 .swatch { background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6My4yIj48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }
 
 @font-face {
 	font-family: 'Open Sans';
