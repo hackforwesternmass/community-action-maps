@@ -95,7 +95,26 @@
 
 	<script src="leaflet-0.5.1/leaflet-src.js"></script>
 	<script src="js/vendor/jquery-1.10.1.min.js"></script>
-	<script src="js/main.js"></script>
+	<script>
+		/* This was js/main.js */
+		$(function(){
+			$('a.programs-tab').click(function() {
+				$('#programs').toggle();
+				$('#demos').hide();
+				$('#resources').hide();
+			});
+			$('a.demos-tab').click(function(){
+				$('#demos').toggle();
+				$('#programs').hide();
+				$('#resources').hide();
+			});
+			$('a.resources-tab').click(function() {
+				$('#resources').toggle();
+				$('#demos').hide();
+				$('#programs').hide();
+			});
+		});
+	</script>
 	<script src="js/map.js"></script>
 
 	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
