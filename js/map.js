@@ -20,21 +20,55 @@ function poverty_hashes(feature)  // Assumes a census tract feature
 	return { color: '#000000', opacity: 1, fillColor: fillColor, weight: 0.2, fillOpacity: 1 };
 }
 var map_overlay_colors = [ '#f6d86c', '#f5af5e', '#f17b3c', '#f74c4c' ];
+var map_overlay_alpha_colors = []; // set by function below based on colors above
+var map_overlay_opacity = 1; // set by function below based on colors above
+(function () {
+	var digits = '0123456789abcdef';
+	var i2h = function (component) {
+		return digits.substr(Math.floor(component / 16), 1) + digits.substr(component % 16, 1);
+	}
+	var h2i = function (component) {
+		return 16 * digits.indexOf(component.substr(0, 1)) + digits.indexOf(component.substr(1, 1));
+	}
+	var colors = []
+	for (i in map_overlay_colors) {
+		colors.push(h2i(map_overlay_colors[i].substr(1, 2)));
+		colors.push(h2i(map_overlay_colors[i].substr(3, 2)));
+		colors.push(h2i(map_overlay_colors[i].substr(5, 2)));
+	}
+	var alpha = 254;
+	for (i in colors) {
+		if (colors[i] < alpha) {
+			alpha = colors[i];
+		}
+	}
+	for (i in colors) {
+		colors[i] = (colors[i] - alpha) * 255 / (255 - alpha)
+	}
+	while (colors.length > 0) {
+		color = '#';
+		for (i = 0; i < 3; ++i) {
+			color += i2h(colors.shift());
+		}
+		map_overlay_alpha_colors.push(color);
+	}
+	map_overlay_opacity = (255 - alpha) / 255;
+})();
 function head_start_colors(feature)  // Assumes a census tract feature
 {
 	var fill;
 	var tract = feature.properties.TRACTCE10;
 	var hs_pct = tracts[tract].headstart;
 	if        (hs_pct < 0.01) {
-		fill = map_overlay_colors[0];
+		fill = map_overlay_alpha_colors[0];
 	} else if (hs_pct < 0.05) {
-		fill = map_overlay_colors[1];
+		fill = map_overlay_alpha_colors[1];
 	} else if (hs_pct < 0.10) {
-		fill = map_overlay_colors[2];
+		fill = map_overlay_alpha_colors[2];
 	} else {
-		fill = map_overlay_colors[3];
+		fill = map_overlay_alpha_colors[3];
 	}
-	return { color: fill, opacity: 0.5, fillColor: fill, weight: 1, fillOpacity: 0.5 };
+	return { color: fill, opacity: map_overlay_opacity, fillColor: fill, weight: 0, fillOpacity: map_overlay_opacity };
 }
 // Data to put on map initially; first -> last : front to back
 var geoJSONStack = [
