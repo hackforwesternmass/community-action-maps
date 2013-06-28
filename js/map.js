@@ -53,6 +53,7 @@ var map_overlay_opacity = 1; // set by function below based on colors above
 		map_overlay_alpha_colors.push(color);
 	}
 	map_overlay_opacity = (255 - alpha) / 255;
+	map_overlay_opacity *= 0.85; // FIXME?
 })();
 function head_start_colors(feature)  // Assumes a census tract feature
 {
