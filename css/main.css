@@ -1054,10 +1054,10 @@ body {
 	background: #caa;
 	border: 1px solid black;
 }
-#legend_0_0 .swatch { background-color: #f74c4c; }
-#legend_0_1 .swatch { background-color: #f17b3c; }
-#legend_0_2 .swatch { background-color: #f5af5e; }
-#legend_0_3 .swatch { background-color: #f6d86c; }
+#legend_0_0 .swatch { background-color: #f6d86c; }
+#legend_0_1 .swatch { background-color: #f5af5e; }
+#legend_0_2 .swatch { background-color: #f17b3c; }
+#legend_0_3 .swatch { background-color: #f74c4c; }
 
 /* FIXME put different crossatch thicknesses here when we have them */
 #legend_1_0 .swatch { background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MC41Ij48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }

@@ -1,5 +1,5 @@
-var poverty_low_color = {hue: 0, saturation: 1, value: 0.97};
-var poverty_high_color = {hue: 47, saturation: 0.81, value: 0.95};
+var poverty_low_color = {hue: 47, saturation: 0.81, value: 0.95};
+var poverty_high_color = {hue: 0, saturation: 1, value: 0.97};
 var serviceAreaCenter = [42.369373, -72.639241];
 var fuelGaugeIcon = L.icon({
 								iconUrl: 'fuel_gauge_www.fotosearch.com.jpg',
