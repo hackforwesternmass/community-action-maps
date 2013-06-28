@@ -17,7 +17,7 @@ function poverty_hashes(feature)  // Assumes a census tract feature
 		bracket = 3;
 	}
 	var fillColor = 'url(#hatches' + bracket + ')';
-	return { color: '#000000', opacity: 1, fillColor: fillColor, weight: 1, fillOpacity: 1 };
+	return { color: '#000000', opacity: 1, fillColor: fillColor, weight: 0.2, fillOpacity: 1 };
 }
 var map_overlay_colors = [ '#f6d86c', '#f5af5e', '#f17b3c', '#f74c4c' ];
 function head_start_colors(feature)  // Assumes a census tract feature
@@ -34,7 +34,7 @@ function head_start_colors(feature)  // Assumes a census tract feature
 	} else {
 		fill = map_overlay_colors[3];
 	}
-	return { color: fill, opacity: 0.7, fillColor: fill, weight: 1, fillOpacity: 0.7 };
+	return { color: fill, opacity: 0.5, fillColor: fill, weight: 1, fillOpacity: 0.5 };
 }
 // Data to put on map initially; first -> last : front to back
 var geoJSONStack = [
@@ -53,16 +53,16 @@ var geoJSONStack = [
 		},
 		controlName: '<span style="color: #4E6C9B;">Community Action Offices &bull;</span>'
 	},
-	{
-		layerURL: 'geography/CommunityActionServiceArea.json',
-		properties: { style: { color: '#4E6C9B', fill: false, weight: 7, opacity: 1 } },
-		controlName: '<span style="color: #4E6C9B;">Service Area &#x2501;&#x2501;&#x2501;&#x2501;</span>'
-	},
-	{
-		layerURL: 'geography/USStates.json',
-		properties: { style: { color: 'purple', fill: false, weight: 3, dashArray: '5,5' } },
-		controlName: '<span style="color: purple;">States &#x257A;&#x2578;&nbsp;&#x257A;&#x2578;&#x257A;&#x2578;</span>'
-	},
+	//{
+	//	layerURL: 'geography/CommunityActionServiceArea.json',
+	//	properties: { style: { color: '#4E6C9B', fill: false, weight: 7, opacity: 1 } },
+	//	controlName: '<span style="color: #4E6C9B;">Service Area &#x2501;&#x2501;&#x2501;&#x2501;</span>'
+	//},
+	//{
+	//	layerURL: 'geography/USStates.json',
+	//	properties: { style: { color: 'purple', fill: false, weight: 3, dashArray: '5,5' } },
+	//	controlName: '<span style="color: purple;">States &#x257A;&#x2578;&nbsp;&#x257A;&#x2578;&#x257A;&#x2578;</span>'
+	//},
 	{
 		layerURL: 'geography/MassachusettsCounties.json',
 		properties: { style: { color: 'black', fill: false, weight: 3 } },
