@@ -186,7 +186,8 @@ function getCensus(censusData)
 
 map = L.map('map').setView(serviceAreaCenter, 10);
 L.tileLayer(
-	'http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png',
+	// 'http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png',
+	'http://a.tiles.mapbox.com/v3/jasonwoof.map-f2zc6iis/{z}/{x}/{y}.png',
 	{
 		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
 		maxZoom: 18,
