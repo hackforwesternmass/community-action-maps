@@ -18,33 +18,52 @@ var layerControl = new L.Control.Layers();
 function scaleData(data, dataMin, dataMax) { return dataMax == dataMin ? 0.5 : (data - dataMin)/(dataMax - dataMin) };	// scales data between 0 and 1
 function poverty_hashes(feature)	// Assumes a census tract feature
 {
-	var fillColor = 'url(#hatches' + Math.floor(scaleData(poverty[feature.properties.GEOID10], povertyMin, povertyMax) * 4) + ')';
+	var bracket = 0;
+	var pov_pct = tracts[feature.properties.TRACTCE10].poverty;
+	if        (pov_pct < 0.05) {
+		bracket = 0;
+	} else if (pov_pct < 0.15) {
+		bracket = 1;
+	} else if (pov_pct < 0.25) {
+		bracket = 2;
+	} else {
+		bracket = 3;
+	}
+	var fillColor = 'url(#hatches' + bracket + ')';
 	return { color: '#000000', opacity: 1, fillColor: fillColor, weight: 1, fillOpacity: 1 };
 }
-function ca_colors(feature)	// Assumes a census tract feature
+var map_overlay_colors = [ '#f6d86c', '#f5af5e', '#f17b3c', '#f74c4c' ];
+function head_start_colors(feature)	// Assumes a census tract feature
 {
-	var recipients = ca_data[feature.properties.TRACTCE10];
-	if (!recipients) {
-		recipients = 0;
+	var fill;
+	var tract = feature.properties.TRACTCE10;
+	var hs_pct = tracts[tract].headstart
+	if        (hs_pct < 0.01) {
+		fill = map_overlay_colors[0];
+	} else if (hs_pct < 0.05) {
+		fill = map_overlay_colors[1];
+	} else if (hs_pct < 0.10) {
+		fill = map_overlay_colors[2];
+	} else {
+		fill = map_overlay_colors[3];
 	}
-	var fillColor = value_to_color(scaleData(recipients, 0, ca_data.max), poverty_high_color, poverty_low_color);
-	return { color: fillColor, opacity: 0.7, fillColor: fillColor, weight: 1, fillOpacity: 0.7 };
+	return { color: fill, opacity: 0.7, fillColor: fill, weight: 1, fillOpacity: 0.7 };
 }
 // Data to put on map initially; first -> last : front to back
 var geoJSONStack = [
 		{
 			layerURL: 'geography/CommunityActionSites.json',
 			properties: { 
-							style:  { color: '#4E6C9B', opacity: 1 }, 
-							onEachFeature: function (feature, layer) { 
-												layer.bindPopup('<b>Community Action Office:</b> ' + feature.properties.Site + 
-													'<br /><b>Address:</b> ' + feature.properties.Street +
-													', ' + feature.properties.City +
-													', ' + feature.properties.State +
-													'<br /><b>Services:</b> ' + feature.properties.Services
-													) 
-											} 
-						},
+				style:  { color: '#4E6C9B', opacity: 1 }, 
+				onEachFeature: function (feature, layer) { 
+					layer.bindPopup('<b>Community Action Office:</b> ' + feature.properties.Site + 
+						'<br /><b>Address:</b> ' + feature.properties.Street +
+						', ' + feature.properties.City +
+						', ' + feature.properties.State +
+						'<br /><b>Services:</b> ' + feature.properties.Services
+					) 
+				} 
+			},
 			controlName: '<span style="color: #4E6C9B;">Community Action Offices &bull;</span>'
 		},
 		{
@@ -70,28 +89,29 @@ var geoJSONStack = [
 		{
 			layerURL: 'geography/CommunityActionTracts.json',
 			properties: { 
-							style: poverty_hashes,
-							onEachFeature: function (feature, layer) { 
-								layer.bindPopup('Census Tract: ' + feature.properties.GEOID10 + 
-									'<br />Poverty Rate: ' + Math.round(poverty[feature.properties.GEOID10] * 100) + '%') 
-								} 
-						},
-			controlName: '<span style="color: ' + value_to_color(0.5, poverty_high_color, poverty_low_color) + '">Poverty in Census Tracts </span>'
+				style: poverty_hashes,
+				onEachFeature: function (feature, layer) { 
+					var tract = feature.properties.TRACTCE10;
+					if (!tracts[tract]) {
+						tracts[tract] = { population: 0, poverty: 0, headstart: 0 }
+					}
+					layer.bindPopup('Census Tract: ' + tract + 
+						'<br />Poverty Rate: ' + Math.round(tracts[tract].poverty * 100) + '%' +
+						'<br />Head Start Recipients: ' + Math.round(tracts[tract].headstart * 100) + '%') 
+				} 
+			},
+			controlName: '<span style="color: ' + map_overlay_colors[2] + '">Poverty in Census Tracts </span>'
 		},
 		{
 			layerURL: 'geography/CommunityActionTracts.json',
 			properties: {
-							style: ca_colors,
-							onEachFeature: function (feature, layer) {
-								layer.bindPopup('Census Tract: ' + feature.properties.GEOID10 +
-									'<br />Community Action Data: ' + Math.round(poverty[feature.properties.GEOID10] * 100) + '%')
-								}
-						},
-			controlName: '<span style="color: ' + value_to_color(0.5, poverty_high_color, poverty_low_color) + '">Community Action Data </span>' +
-				'<span style="color: ' + value_to_color(0, poverty_high_color, poverty_low_color) + '">&#x2588;</span>' +
-				'<span style="color: ' + value_to_color(0.33, poverty_high_color, poverty_low_color) + '">&#x2588;</span>' +
-				'<span style="color: ' + value_to_color(0.67, poverty_high_color, poverty_low_color) + '">&#x2588;</span>' +
-				'<span style="color: ' + value_to_color(1.00, poverty_high_color, poverty_low_color) + '">&#x2588;</span>'
+				style: head_start_colors,
+			},
+			controlName: '<span style="color: ' + map_overlay_colors[2] + '">Community Action Data </span>' +
+				'<span style="color: ' + map_overlay_colors[0] + '">&#x2588;</span>' +
+				'<span style="color: ' + map_overlay_colors[1] + '">&#x2588;</span>' +
+				'<span style="color: ' + map_overlay_colors[2] + '">&#x2588;</span>' +
+				'<span style="color: ' + map_overlay_colors[3] + '">&#x2588;</span>'
 		}
 	]
 function mapLayerStack(geoJSON)
@@ -120,14 +140,18 @@ var censusGeoTypeStack = ['*', '812201,812202,812300,812401,812403,812404,812500
 						'813000,813101,813102,813204,813205,813206,813207,813208,813209', '*'];
 var censusState = '25';
 var povertyFields = 'B17001_001E,B17001_002E';	// comma-separated list of field references
-var poverty = { };
-var povertyMin = 1;
-var povertyMax = 0;
+var tracts = { };
 var ca_data = { };
 
 function getData() {
 	$.getJSON('community-action-data/recipients_per_tract.json', function(data) {
 		ca_data = data;
+
+		// FIXME delete this loop when we have real numbers
+		for (tract in ca_data) {
+			ca_data[tract] *= 30
+		}
+		
 		getCensus();
 	});
 }
@@ -137,14 +161,20 @@ function getCensus(censusData)
 {
 	if (censusData)	// called by $.getJSON, this is a reference to the data that is now available
 	{
-		var censusDataRow, GEOID10;
+		var censusDataRow, tract, population;
 		for (i = 1; i < censusData.length; i++)
 		{
 			censusDataRow = censusData[i];
-			GEOID10 = censusDataRow[2] + censusDataRow[3] + censusDataRow[4];
-			poverty[GEOID10] = censusDataRow[0] > 0 ? censusDataRow[1] / censusDataRow[0] : 0
-			povertyMin = Math.min(povertyMin, poverty[GEOID10]);
-			povertyMax = Math.max(povertyMax, poverty[GEOID10]);
+			tract = censusDataRow[4];
+			population = censusDataRow[0];
+			tracts[tract] = { population: 0, poverty: 0, headstart: 0 }
+			if (population > 0) {
+				tracts[tract].population = population;
+				tracts[tract].poverty = censusDataRow[1] / population
+				if (ca_data[tract]) {
+					tracts[tract].headstart = ca_data[tract] / population
+				}
+			}
 		}
 	}
 	if (censusCountyStack.length > 0)	// Recurse until the stack is empty
@@ -161,8 +191,8 @@ function getCensus(censusData)
 	{
 		var censusInfo = document.getElementById('censusInfo');
 		censusInfo.innerHTML = '';
-		for (key in poverty)
-			censusInfo.innerHTML += key + '&nbsp;&nbsp;&nbsp;&nbsp;' + Math.round(poverty[key] *100) + '%<br />';
+		for (key in tracts)
+			censusInfo.innerHTML += key + '&nbsp;&nbsp;&nbsp;&nbsp;' + Math.round(tracts[key].poverty *100) + '%<br />';
 		mapLayerStack();	// now load the geographies; first call no arguments
 	}
 }
