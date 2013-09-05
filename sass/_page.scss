@@ -33,18 +33,11 @@
 	ul {
 		margin: 0;
 		li {
-			list-style-type: square;
 			font-size: 2em
 			span {
 				color: #222;
 				font-size: 1em;
 			}
-		}
-		&.head-start {
-			&:nth-child(1) { color: #f74c4c }
-			&:nth-child(2) { color: #f17b3c }
-			&:nth-child(3) { color: #f5af5e }
-			&:nth-child(4) { color: #f6d86c }
 		}
 	}
 }

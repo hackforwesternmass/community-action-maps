@@ -26,7 +26,7 @@
 /* We are Normalizing instead of resetting.
  * http://necolas.github.io/normalize.css/ 
  */
-/* normalize.css v1.1.0 | MIT License | git.io/normalize */
+/*! normalize.css v1.1.0 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
    ========================================================================== */
@@ -806,11 +806,11 @@ body {
         font-size-color: #222;
         font-size-font-size: 1em; }
 
-/* line 51, ../sass/_page.scss */
+/* line 44, ../sass/_page.scss */
 .key {
   padding: 0.5em; }
 
-/* line 54, ../sass/_page.scss */
+/* line 47, ../sass/_page.scss */
 .background {
   padding: 0.5em;
   background-color: #f5f7fa; }
@@ -1030,50 +1030,70 @@ body {
   /* line 186, ../sass/_html5bp2.scss */
   h2,
   h3 {
-    page-break-after: avoid; }
-}
-
-
+    page-break-after: avoid; } }
+/* line 191, ../sass/_html5bp2.scss */
 .legend .legend_ranges {
-	list-style: none;
-	padding: 0;
-	margin: 0 0 0 -15px;
-}
-.legend_ranges > li {
-	margin: 0 0 0 15px;
-	padding: 0;
-	float: left;
-	/* width: 110px; */
-	vertical-align: baseline;
-}
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 -15px; }
 
+/* line 196, ../sass/_html5bp2.scss */
+.legend_ranges > li {
+  margin: 0 0 0 15px;
+  padding: 0;
+  float: left;
+  /* width: 110px; */
+  vertical-align: baseline; }
+
+/* line 204, ../sass/_html5bp2.scss */
 .legend_ranges .swatch {
-	display: inline-block;
-	width: 13px;
-	height: 13px;
-	background: #caa;
-	border: 1px solid black;
-}
-#legend_0_0 .swatch { background-color: #f6d86c; }
-#legend_0_1 .swatch { background-color: #f5af5e; }
-#legend_0_2 .swatch { background-color: #f17b3c; }
-#legend_0_3 .swatch { background-color: #f74c4c; }
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background: #caa;
+  border: 1px solid black; }
+
+/* line 211, ../sass/_html5bp2.scss */
+#legend_0_0 .swatch {
+  background-color: #f6d86c; }
+
+/* line 212, ../sass/_html5bp2.scss */
+#legend_0_1 .swatch {
+  background-color: #f5af5e; }
+
+/* line 213, ../sass/_html5bp2.scss */
+#legend_0_2 .swatch {
+  background-color: #f17b3c; }
+
+/* line 214, ../sass/_html5bp2.scss */
+#legend_0_3 .swatch {
+  background-color: #f74c4c; }
 
 /* FIXME put different crossatch thicknesses here when we have them */
-#legend_1_0 .swatch { background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MC41Ij48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }
-#legend_1_1 .swatch { background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MS4yIj48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }
-#legend_1_2 .swatch { background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MiI+PHBhdGggZD0iTS0yLDcgbDksLTkiPjwvcGF0aD48cGF0aCBkPSJNLTIsMTcgbDE5LC0xOSI+PC9wYXRoPjxwYXRoIGQ9Ik04LDE3IGw5LC05Ij48L3BhdGg+PC9nPjwvc3ZnPg0=) repeat; }
-#legend_1_3 .swatch { background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6My4yIj48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }
+/* line 217, ../sass/_html5bp2.scss */
+#legend_1_0 .swatch {
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MC41Ij48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }
+
+/* line 218, ../sass/_html5bp2.scss */
+#legend_1_1 .swatch {
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MS4yIj48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }
+
+/* line 219, ../sass/_html5bp2.scss */
+#legend_1_2 .swatch {
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MiI+PHBhdGggZD0iTS0yLDcgbDksLTkiPjwvcGF0aD48cGF0aCBkPSJNLTIsMTcgbDE5LC0xOSI+PC9wYXRoPjxwYXRoIGQ9Ik04LDE3IGw5LC05Ij48L3BhdGg+PC9nPjwvc3ZnPg0=) repeat; }
+
+/* line 220, ../sass/_html5bp2.scss */
+#legend_1_3 .swatch {
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSI+PGcgc3R5bGU9ImZpbGw6bm9uZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6My4yIj48cGF0aCBkPSJNLTIsNyBsOSwtOSI+PC9wYXRoPjxwYXRoIGQ9Ik0tMiwxNyBsMTksLTE5Ij48L3BhdGg+PHBhdGggZD0iTTgsMTcgbDksLTkiPjwvcGF0aD48L2c+PC9zdmc+DQ==) repeat; }
 
 @font-face {
-	font-family: 'Open Sans';
-	font-style: normal;
-	font-weight: 300;
-	src: local('Open Sans Light'), local('OpenSans-Light'), url(../fonts/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
-}
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(../fonts/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format("woff"); }
+
 @font-face {
-	font-family: 'Open Sans';
-	font-style: normal;
-	font-weight: 700;
-	src: local('Open Sans Bold'), local('OpenSans-Bold'), url(../fonts/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
-}
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(../fonts/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format("woff"); }
